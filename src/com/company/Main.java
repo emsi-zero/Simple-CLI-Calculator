@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Stack;
+
 public class Main {
 
     public static class InputString{
@@ -93,6 +95,19 @@ public class Main {
             }
 
         }
+
+
+
+
+        private int getPrecedence(char c){
+            if (c == '+' || c == '-'){
+                return 1;
+            }else if (c == '*' || c == '/'){
+                return 2;
+            }else {
+                return 0;
+            }
+        }
     }
 
     public static class Node{
@@ -108,7 +123,21 @@ public class Main {
     public static void main(String[] args) {
 
         InputString inputString = new InputString();
-
+        inputString.insert(new Node('A'));
+        inputString.insert(new Node('B'));
+        inputString.insert(new Node('C'));
+        inputString.insert(new Node('D'));
+        System.out.println(inputString.returnStr());
+        inputString.delete();
+        System.out.println(inputString.returnStr());
+        inputString.moveCursor(false);
+        System.out.println(inputString.returnStr());
+        inputString.delete();
+        System.out.println(inputString.returnStr());
+        inputString.insert(new Node('H'));
+        System.out.println(inputString.returnStr());
+        inputString.moveCursor(true);
+        System.out.println(inputString.returnStr());
 
     }
 }
