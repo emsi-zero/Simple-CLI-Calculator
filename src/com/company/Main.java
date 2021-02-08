@@ -40,6 +40,46 @@ public class Main {
             }
             return str;
         }
+
+        public void moveCursor(boolean right) {
+
+            if (right){
+                if (cursor.next != null) {
+                    if (cursor.prev == null){
+                        head = cursor.next;
+                    }else {
+                        cursor.prev.next = cursor.next;
+                    }
+                    cursor.next.prev = cursor.prev;
+                    cursor.prev = cursor.next;
+                    cursor.next = cursor.next.next;
+                    cursor.prev.next = cursor;
+                    if (cursor.next != null) {
+                        cursor.next.prev = cursor;
+                    }else {
+                        tail = cursor;
+                    }
+                }
+            }else {
+                if (cursor.prev != null){
+                    if (cursor.next == null){
+                        tail = cursor.prev;
+                    }else{
+                        cursor.next.prev = cursor.prev;
+                    }
+                    cursor.prev.next = cursor.next;
+                    cursor.next = cursor.prev;
+                    cursor.prev = cursor.prev.prev;
+                    cursor.next.prev = cursor;
+                    if (cursor.prev != null){
+                        cursor.prev.next = cursor;
+                    }else {
+                        head = cursor;
+                    }
+                }
+            }
+
+        }
     }
 
     public static class Node{
