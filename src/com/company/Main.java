@@ -2,7 +2,7 @@ package com.company;
 
 public class Main {
 
-    public class InputString{
+    public static class InputString{
         Node head;
         Node cursor;
         Node tail;
@@ -29,9 +29,20 @@ public class Main {
             newNode.next = cursor;
             cursor.prev = newNode;
         }
+
+        public String returnStr(){
+            String str = "";
+            Node p;
+            p = head;
+            while (p != null){
+                str += p.data;
+                p=p.next;
+            }
+            return str;
+        }
     }
 
-    public class Node{
+    public static class Node{
         char data;
         Node next;
         Node prev;
@@ -42,6 +53,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
+
+        InputString inputString = new InputString();
+
 
     }
 }
