@@ -104,7 +104,7 @@ public class Main {
             ) {
                 if (c == '|'){
                     continue;
-                }else if (c >= 0 && c<= 9){
+                }else if (c >= 48 && c<= 57){
                     str += c;
                 }else if (c == '('){
                     stack.push(c);
@@ -116,7 +116,7 @@ public class Main {
                         stack.pop();
                     }
                 }else {
-                    while (stack.peek()!='#' && getPrecedence(c) >= getPrecedence(stack.peek())){
+                    while (stack.peek()!='#' && getPrecedence(c) <= getPrecedence(stack.peek())){
                         str += stack.pop();
                     }
                     stack.push(c);
@@ -150,11 +150,44 @@ public class Main {
         }
     }
 
+    public static int calculate(String exp){
+        int a;
+        int b;
+        Stack<Integer> stack = new Stack<>();
+        for (char c: exp.toCharArray()
+             ) {
+
+            if (c  >= 48 && c <= 57){
+                stack.push(((int)c) - 48);
+            }else {
+                a = stack.pop();
+                b = stack.pop();
+                switch (c){
+                    case '+':
+                        stack.push(a + b);
+                        break;
+                    case '-':
+                        stack.push(a - b);
+                        break;
+                    case '*':
+                        stack.push(a * b);
+                        break;
+                    case '/':
+                        stack.push(a / b);
+                        break;
+                }
+            }
+        }
+
+        return stack.peek();
+    }
 
 
     public static void main(String[] args) {
 
         InputString inputString = new InputString();
+
+
 
     }
 }
