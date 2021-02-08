@@ -96,7 +96,37 @@ public class Main {
 
         }
 
-
+        public String returnPostFixStr(){
+            String str = "";
+            Stack<Character> stack = new Stack<Character>();
+            stack.push('#');
+            for (char c: returnStr().toCharArray()
+            ) {
+                if (c == '|'){
+                    continue;
+                }else if (c >= 0 && c<= 9){
+                    str += c;
+                }else if (c == '('){
+                    stack.push(c);
+                }else if (c == ')'){
+                    while (stack.peek()!='#' && stack.peek() != '('){
+                        str += stack.pop();
+                    }
+                    if (stack.peek() == '('){
+                        stack.pop();
+                    }
+                }else {
+                    while (stack.peek()!='#' && getPrecedence(c) >= getPrecedence(stack.peek())){
+                        str += stack.pop();
+                    }
+                    stack.push(c);
+                }
+            }
+            while (stack.peek() != '#'){
+                str += stack.pop();
+            }
+            return str;
+        }
 
 
         private int getPrecedence(char c){
@@ -120,24 +150,11 @@ public class Main {
         }
     }
 
+
+
     public static void main(String[] args) {
 
         InputString inputString = new InputString();
-        inputString.insert(new Node('A'));
-        inputString.insert(new Node('B'));
-        inputString.insert(new Node('C'));
-        inputString.insert(new Node('D'));
-        System.out.println(inputString.returnStr());
-        inputString.delete();
-        System.out.println(inputString.returnStr());
-        inputString.moveCursor(false);
-        System.out.println(inputString.returnStr());
-        inputString.delete();
-        System.out.println(inputString.returnStr());
-        inputString.insert(new Node('H'));
-        System.out.println(inputString.returnStr());
-        inputString.moveCursor(true);
-        System.out.println(inputString.returnStr());
 
     }
 }
