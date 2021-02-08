@@ -18,6 +18,17 @@ public class Main {
             head = cursor;
             tail = cursor;
         }
+
+        public void Insert(Node newNode){
+            if (cursor.prev == null){
+                head = newNode;
+            }else {
+                cursor.prev.next = newNode;
+                newNode.prev = cursor.prev;
+            }
+            newNode.next = cursor;
+            cursor.prev = newNode;
+        }
     }
 
     public class Node{
