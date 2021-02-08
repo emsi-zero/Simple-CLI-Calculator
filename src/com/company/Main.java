@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Scanner;
 import java.util.Stack;
 
 public class Main {
@@ -19,6 +20,13 @@ public class Main {
             cursor = new Node('|');
             head = cursor;
             tail = cursor;
+            for (char c: defaultString.toCharArray()
+                 ) {
+                insert(new Node(c));
+            }
+            while (cursor.prev != null){
+                moveCursor(false);
+            }
         }
 
         public void insert(Node newNode){
