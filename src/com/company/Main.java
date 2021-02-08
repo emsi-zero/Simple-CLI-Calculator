@@ -19,7 +19,7 @@ public class Main {
             tail = cursor;
         }
 
-        public void Insert(Node newNode){
+        public void insert(Node newNode){
             if (cursor.prev == null){
                 head = newNode;
             }else {
@@ -28,6 +28,19 @@ public class Main {
             }
             newNode.next = cursor;
             cursor.prev = newNode;
+        }
+
+        public void delete(){
+            Node p;
+            if (cursor.prev!= null){
+                if (head == cursor.prev) {
+                    head = cursor;
+                }
+                cursor.prev = cursor.prev.prev;
+                if (cursor.prev != null){
+                    cursor.prev.next = cursor;
+                }
+            }
         }
 
         public String returnStr(){
