@@ -193,7 +193,28 @@ public class Main {
 
     public static void main(String[] args) {
 
-        InputString inputString = new InputString();
+        Scanner scanner = new Scanner(System.in);
+
+        int num = Integer.parseInt(scanner.nextLine());
+        String defaultStr;
+        defaultStr = scanner.nextLine();
+        InputString inputString = new InputString(defaultStr);
+        for (int i = 0; i < num; i++) {
+            String [] strings = scanner.nextLine().split(" ");
+            if (strings[0].equals("<")){
+                inputString.moveCursor(false);
+            }else if (strings[0].equals(">")){
+                inputString.moveCursor(true);
+            }else if (strings[0].equals("-")){
+                inputString.delete();
+            }else if (strings[0].equals("+")){
+                inputString.insert(new Node(strings[1].toCharArray()[0]));
+            }else if (strings[0].equals("?")){
+                System.out.println(inputString.returnStr());
+            }else if (strings[0].equals("!")){
+                System.out.println(calculate(inputString.returnPostFixStr()));
+            }
+        }
 
 
 
