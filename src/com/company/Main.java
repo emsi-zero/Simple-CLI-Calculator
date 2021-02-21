@@ -126,11 +126,6 @@ public class Main {
                 }else {
 
                     while (stack.peek()!='#' && getPrecedence(c) <= getPrecedence(stack.peek())){
-//                        if (stack.peek() >= 48 && stack.peek()<= 57){
-//                            str += stack.pop();
-//                        }else {
-//                            str +=" " + stack.pop();
-//                        }
                         str += stack.pop();
                     }
                     str += ' ';
