@@ -124,13 +124,21 @@ public class Main {
                         stack.pop();
                     }
                 }else {
+
                     while (stack.peek()!='#' && getPrecedence(c) <= getPrecedence(stack.peek())){
+//                        if (stack.peek() >= 48 && stack.peek()<= 57){
+//                            str += stack.pop();
+//                        }else {
+//                            str +=" " + stack.pop();
+//                        }
                         str += stack.pop();
                     }
+                    str += ' ';
                     stack.push(c);
                 }
             }
             while (stack.peek() != '#'){
+                str += ' ';
                 str += stack.pop();
             }
             return str;
@@ -162,11 +170,18 @@ public class Main {
         int a;
         int b;
         Stack<Integer> stack = new Stack<>();
+        int temp = 0;
         for (char c: exp.toCharArray()
              ) {
 
             if (c  >= 48 && c <= 57){
-                stack.push(((int)c) - 48);
+                temp *=10;
+                temp += ((int)c) - 48;
+                continue;
+            }else if (c == ' ' ){
+                int operand = temp;
+                stack.push(operand);
+                temp = 0;
             }else {
                 a = stack.pop();
                 b = stack.pop();
